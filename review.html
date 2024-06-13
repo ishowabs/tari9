@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Submission Form</title>
+  <link rel="stylesheet" href="review.css">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<header>
+  <div class="logo">
+      <h2 class="mt-3"><a href="index.html">iPLAY</a></h2>
+  </div>
+</header>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-6 ml-4 offset-md-3">
+      <h2 class="text-center mb-4">Submit Your Review</h2>
+      <form id="reviewForm">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="rating">Rating</label>
+          <select class="form-control" id="rating" name="rating" required>
+            <option value="">Select Rating</option>
+            <option value="5">5 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="2">2 Stars</option>
+            <option value="1">1 Star</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="review">Your Review</label>
+          <textarea class="form-control" id="review" name="review" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+      </form>
+    </div>
+    <div class="mt-1" id="reviewList">
+      <h2 class="text-center ml-5 mb-4">Submitted Reviews</h2>
+      <ul id="reviews" class="list-group ml-5"></ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('reviewForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const rating = document.getElementById('rating').value;
+    const reviewText = document.getElementById('review').value;
+
+    
+    const reviewItem = document.createElement('li');
+    reviewItem.classList.add('list-group-item');
+    reviewItem.innerHTML = `<strong>${name}</strong> (${email})<br>
+                            Rating: ${rating} Stars<br>
+                            ${reviewText}`;
+
+    
+    document.getElementById('reviews').appendChild(reviewItem);
+
+    
+    document.getElementById('reviewForm').reset();
+  });
+</script>
+</body>
+</html>
