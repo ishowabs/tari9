@@ -42,5 +42,49 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let hasError = false;
+            document.querySelectorAll('.error-message').forEach(function(element) {
+                element.remove();
+            });
+
+
+            const name = document.getElementById('name');
+            if (!name.value.trim()) {
+                const error = document.createElement('div');
+                error.className = 'error-message text-danger';
+                error.innerText = 'Please enter your name.';
+                name.parentNode.appendChild(error);
+                hasError = true;
+            }
+
+            
+            const email = document.getElementById('email');
+            if (!email.value.trim()) {
+                const error = document.createElement('div');
+                error.className = 'error-message text-danger';
+                error.innerText = 'Please enter your email.';
+                email.parentNode.appendChild(error);
+                hasError = true;
+            }
+
+            
+            const message = document.getElementById('message');
+            if (!message.value.trim()) {
+                const error = document.createElement('div');
+                error.className = 'error-message text-danger';
+                error.innerText = 'Please enter your message.';
+                message.parentNode.appendChild(error);
+                hasError = true;
+            }
+
+            
+            if (!hasError) {
+                this.submit();
+            }
+        });
+    </script>
 </body>
 </html>
